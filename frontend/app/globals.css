@@ -1,0 +1,229 @@
+/* FILE: frontend/app/globals.css */
+/* VibeFlow — Global styles, design tokens, and utility classes */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Custom Properties ─────────────────────────────────────────────── */
+:root {
+  --mood-color: #9B72CF;
+  --mood-color-10: rgba(155, 114, 207, 0.10);
+  --mood-color-20: rgba(155, 114, 207, 0.20);
+  --mood-color-40: rgba(155, 114, 207, 0.40);
+  --neutral-dark: #1A1A2E;
+  --chart-dark: #0D0D1A;
+
+  /* Glassmorphism tokens */
+  --glass-bg: rgba(255, 255, 255, 0.07);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-blur: blur(20px) saturate(180%);
+
+  /* Typography */
+  --font-primary: 'Inter', system-ui, sans-serif;
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+}
+
+/* ─── Base Reset ─────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--neutral-dark);
+  color: rgba(255, 255, 255, 0.92);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─── Typography Scale ───────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+/* ─── Glassmorphism Utility ──────────────────────────────────────────────── */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+}
+
+.glass-subtle {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+}
+
+/* ─── Mood Glow Utilities ────────────────────────────────────────────────── */
+.mood-glow {
+  box-shadow: 0 0 20px var(--mood-color-40);
+}
+
+.mood-glow-strong {
+  box-shadow: 0 0 32px var(--mood-color), 0 0 60px var(--mood-color-40);
+}
+
+.mood-border {
+  border: 1px solid var(--mood-color-40);
+}
+
+/* ─── Liquid Slider Custom Styles ────────────────────────────────────────── */
+.liquid-slider-track {
+  position: relative;
+  height: 8px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  overflow: visible;
+}
+
+.liquid-slider-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  border-radius: 100px;
+  pointer-events: none;
+  transition: width 100ms ease-out;
+}
+
+/* ─── Sentiment Journal Glow States ──────────────────────────────────────── */
+.journal-glow-negative {
+  box-shadow: 0 0 16px rgba(255, 107, 107, 0.60);
+  border-color: rgba(255, 107, 107, 0.60) !important;
+}
+
+.journal-glow-neutral {
+  box-shadow: 0 0 16px rgba(255, 209, 102, 0.60);
+  border-color: rgba(255, 209, 102, 0.60) !important;
+}
+
+.journal-glow-positive {
+  box-shadow: 0 0 16px rgba(116, 192, 168, 0.60);
+  border-color: rgba(116, 192, 168, 0.60) !important;
+}
+
+/* ─── Animated Gradient Mesh Orbs ────────────────────────────────────────── */
+@keyframes orbFloat1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(40px, -60px) scale(1.1); }
+  66%       { transform: translate(-30px, 40px) scale(0.95); }
+}
+
+@keyframes orbFloat2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(-50px, 30px) scale(1.05); }
+  66%       { transform: translate(60px, -40px) scale(0.9); }
+}
+
+@keyframes orbFloat3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%       { transform: translate(30px, 50px) scale(1.08); }
+}
+
+/* ─── Streak Flame Flicker ───────────────────────────────────────────────── */
+@keyframes flickerFlame {
+  0%, 100% { transform: scaleY(1) translateY(0); opacity: 1; }
+  20%       { transform: scaleY(1.04) translateY(-1px); opacity: 0.92; }
+  40%       { transform: scaleY(0.97) translateY(1px); opacity: 0.96; }
+  60%       { transform: scaleY(1.02) translateY(-2px); opacity: 0.88; }
+  80%       { transform: scaleY(0.98) translateY(0); opacity: 0.94; }
+}
+
+.flame-flicker {
+  animation: flickerFlame 2s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+/* ─── Shimmer Skeleton ───────────────────────────────────────────────────── */
+@keyframes shimmerMove {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.03) 0%,
+    rgba(255,255,255,0.10) 50%,
+    rgba(255,255,255,0.03) 100%
+  );
+  background-size: 800px 100%;
+  animation: shimmerMove 1.8s linear infinite;
+}
+
+/* ─── Star Field (Constellation Chart Background) ────────────────────────── */
+.starfield::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.12) 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 60%, rgba(255,255,255,0.08) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 15%, rgba(255,255,255,0.10) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 75%, rgba(255,255,255,0.06) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 40%, rgba(255,255,255,0.09) 0%, transparent 100%),
+    radial-gradient(1px 1px at 20% 85%, rgba(255,255,255,0.07) 0%, transparent 100%),
+    radial-gradient(1px 1px at 45% 50%, rgba(255,255,255,0.11) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 10%, rgba(255,255,255,0.08) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+/* ─── Scrollbar Styling ──────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* ─── Reduced Motion Accessibility ──────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ─── Focus Ring ─────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--mood-color);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ─── Selection ──────────────────────────────────────────────────────────── */
+::selection {
+  background: var(--mood-color-40);
+  color: white;
+}

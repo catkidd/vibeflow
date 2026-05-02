@@ -1,0 +1,32 @@
+# VibeFlow — Root .gitignore
+
+# Node
+node_modules/
+.npm
+
+# Environment secrets — NEVER commit these
+.env
+.env.local
+.env.*.local
+
+# Next.js
+frontend/.next/
+frontend/out/
+
+# Build output
+backend/dist/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/settings.json
+.idea/
+
+# Test coverage
+coverage/
