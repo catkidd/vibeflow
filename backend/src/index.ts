@@ -18,6 +18,7 @@ import sessionRoutes from './routes/sessions';
 import playlistRoutes from './routes/playlists';
 import streakRoutes from './routes/streaks';
 import badgeRoutes from './routes/badges';
+import spotifyAuthRoutes from './routes/spotify_auth';
 
 dotenv.config();
 
@@ -95,6 +96,7 @@ app.use('/api/sessions', sessionRoutes);
 app.use('/api/playlists', playlistRoutes);
 app.use('/api/streaks', streakRoutes);
 app.use('/api/badges', badgeRoutes);
+app.use('/api/spotify', spotifyAuthRoutes);
 
 // ─── Health Check ─────────────────────────────────────────────────────────────
 app.get('/health', (_req, res) => {
